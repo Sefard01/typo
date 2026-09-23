@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TypeFast — Typing Test</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+</head>
+
+<body>
+
+  <main class="app">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <div class="brand">
+        <span class="brand-mark">T</span>
+        <span>TypeFast</span>
+      </div>
+
+      <div class="top-actions">
+
+        <div class="mode-switch">
+          <button class="mode-btn active" data-time="60">
+            1 min
+          </button>
+
+          <button class="mode-btn" data-time="180">
+            3 min
+          </button>
+
+          <button class="mode-btn" data-time="300">
+            5 min
+          </button>
+
+          <button class="mode-btn" data-time="600">
+            10 min
+          </button>
+        </div>
+
+        <button
+          class="icon-btn"
+          id="settingsBtn"
+          aria-label="Settings"
+          title="Settings"
+        >
+          ⚙
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- TEST -->
+    <section id="testScreen">
+
+      <!-- STATS -->
+      <section class="stats">
+
+        <div class="stat primary-stat">
+          <span>WPM</span>
+          <strong id="wpm">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>Accuracy</span>
+          <strong id="accuracy">100%</strong>
+        </div>
+
+        <div class="stat">
+          <span>Errors</span>
+          <strong id="errors">0</strong>
+        </div>
+
+        <!-- HIGHLIGHTED TIMER -->
+        <div class="timer-box">
+          <span>TIME</span>
+          <strong id="timer">1:00</strong>
+        </div>
+
+      </section>
+
+
+      <!-- TYPING AREA -->
+      <section
+        id="typingContainer"
+        class="typing-container"
+        tabindex="0"
+      >
+
+        <div
+          id="textDisplay"
+          class="text-display"
+        ></div>
+
+        <div
+          id="typingHint"
+          class="typing-hint"
+        >
+          Start typing to begin
+        </div>
+
+      </section>
+
+
+      <!-- CONTROLS -->
+      <div class="controls">
+
+        <button
+          id="restartBtn"
+          class="secondary-btn"
+        >
+          Restart
+        </button>
+
+        <span>
+          <kbd>Esc</kbd> restart
+        </span>
+
+        <span>
+          <kbd>Tab</kbd> new test
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+    <section
+      id="resultScreen"
+      class="result-screen hidden"
+    >
+
+      <div class="result-heading">
+
+        <span>TEST COMPLETE</span>
+
+        <h1 id="finalWpm">
+          0 WPM
+        </h1>
+
+        <p id="resultMessage">
+          Keep practicing to improve your speed and accuracy.
+        </p>
+
+      </div>
+
+
+      <div class="result-grid">
+
+        <div class="result-card">
+          <span>Accuracy</span>
+          <strong id="finalAccuracy">
+            100%
+          </strong>
+        </div>
+
+        <div class="result-card">
+          <span>Correct</span>
+          <strong id="finalCorrect">
+            0
+          </strong>
+        </div>
+
+        <div class="result-card">
+          <span>Incorrect</span>
+          <strong id="finalIncorrect">
+            0
+          </strong>
+        </div>
+
+        <div class="result-card">
+          <span>Errors</span>
+          <strong id="finalErrors">
+            0
+          </strong>
+        </div>
+
+      </div>
+
+
+      <div class="mistakes">
+
+        <div class="section-title">
+          Most mistyped characters
+        </div>
+
+        <div
+          id="mistakeList"
+          class="mistake-list"
+        >
+          No mistakes
+        </div>
+
+      </div>
+
+
+      <div class="result-actions">
+
+        <button
+          id="tryAgainBtn"
+          class="primary-btn"
+        >
+          Try Again
+        </button>
+
+        <button
+          id="newTestBtn"
+          class="secondary-btn"
+        >
+          New Test
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- SETTINGS -->
+    <aside
+      id="settingsPanel"
+      class="settings-panel"
+    >
+
+      <div class="settings-header">
+
+        <h2>Settings</h2>
+
+        <button
+          id="closeSettings"
+          class="close-btn"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- DIFFICULTY -->
+      <div class="setting-group">
+
+        <label>
+          Difficulty
+        </label>
+
+        <div class="setting-options">
+
+          <button
+            class="difficulty-btn active"
+            data-difficulty="beginner"
+          >
+            Beginner
+          </button>
+
+          <button
+            class="difficulty-btn"
+            data-difficulty="intermediate"
+          >
+            Intermediate
+          </button>
+
+          <button
+            class="difficulty-btn"
+            data-difficulty="advanced"
+          >
+            Advanced
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- THEME -->
+      <div class="setting-group">
+
+        <label>
+          Appearance
+        </label>
+
+        <div class="theme-options">
+
+          <button
+            class="theme-btn"
+            id="themeToggle"
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+          >
+            <span id="themeIcon">◐</span>
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- BACKSPACE -->
+      <div class="setting-group">
+
+        <label class="checkbox-row">
+
+          <input
+            type="checkbox"
+            id="backspaceToggle"
+            checked
+          />
+
+          <span>
+            Allow backspace
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <!-- SOUND -->
+      <div class="setting-group">
+
+        <label class="checkbox-row">
+
+          <input
+            type="checkbox"
+            id="soundToggle"
+          />
+
+          <span>
+            Typing sounds
+          </span>
+
+        </label>
+
+        <p class="setting-description">
+          A subtle mechanical key sound while typing.
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <div
+      id="overlay"
+      class="overlay"
+    ></div>
+
+  </main>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
